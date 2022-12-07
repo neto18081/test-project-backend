@@ -16,9 +16,9 @@ First, you'll have to set a database. Run the command in the terminal, with Dock
 ```
 The POSTGRES_PASSWORD sets a password for the database, the -p flag binds the port 5432 to be used by the database and the --network sets a bridge network for the container, so we can access it from another container
 
-The next command we have to run is to verify the IP Address of the Database container.
+The next command we have to run is to verify the IP Address of the Database container. You must replace the "container_id" with your Database container's id. It is located above the container's name.
 ```bash
-    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' eb60809467b14cc02b3dfd88dc4437101dc53b2a7b4c2bf103d477e76bbbe659
+    docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_id
 ```
 It will return an IP Address. You must copy this IP and paste it in the .env file, in the POSTGRES_HOST variable value.
 
