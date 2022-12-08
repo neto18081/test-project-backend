@@ -17,6 +17,7 @@ func ConnectToDB() {
 	// Variable for storing possible errors
 	var err error
 
+	// Gets environmental variables values
 	host := os.Getenv("POSTGRES_HOST")
 	user := os.Getenv("POSTGRES_USER")
 	password := os.Getenv("POSTGRES_PASSWORD")
