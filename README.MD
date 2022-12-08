@@ -28,14 +28,14 @@ After that, in the project folder, we are going to create the Docker image by ru
     docker build . -t golang-backend
 ```
 
-And then, we are going to run our container at the port 3000, that is exposed in the Dockerfile
+And then, we are going to run our container at the port 8000, that is exposed in the Dockerfile. You must define the POSTGRES_HOST variable with the IP Address that you got before.
 ```bash
-    docker run -p 3000:3000 golang-backend
+    docker run -e POSTGRES_HOST='localhost' -e POSTGRES_PASSWORD='postgres' -e POSTGRES_USER='postgres' -e PORT='8000' -p 8000:8000 golang-backend
 ```
 
 And finally, we have our project running. Just access 
 ```http
-  http://localhost:3000/
+  http://localhost:8000/
 ```
 using one of the routes below.
 
