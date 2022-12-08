@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/neto18081/test-project-backend/controllers"
+	"github.com/neto18081/test-project-backend/customer"
 	"github.com/neto18081/test-project-backend/initializers"
 	"github.com/neto18081/test-project-backend/models"
 )
@@ -21,10 +21,10 @@ func main() {
 	r := gin.Default()
 
 	// Creates routes
-	r.GET("/customers", controllers.GetCustomers)
-	r.GET("/customers/:id", controllers.GetCustomer)
-	r.POST("/customers", controllers.CreateCustomer)
-	r.PUT("/customers/:id", controllers.UpdateCustomer)
+	r.GET("/customers", customer.GetCustomers)
+	r.GET("/customers/:id", customer.GetCustomer)
+	r.POST("/customers", customer.CreateCustomer)
+	r.PUT("/customers/:id", customer.UpdateCustomer)
 
 	// Run server on port declares in the .env file (3000)
 	r.Run()

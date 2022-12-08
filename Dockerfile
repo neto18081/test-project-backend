@@ -2,13 +2,13 @@ FROM golang:1.19.3 AS build
 
 WORKDIR /app
 
-COPY controllers/ ./controllers
+COPY customer/ ./customer
 COPY initializers/ ./initializers
 COPY models/ ./models
 COPY .env/ ./
 COPY go.mod/ ./
 COPY go.sum/ ./
-COPY main.go/ ./
+COPY main.go ./
 
 RUN go mod download
 
@@ -21,7 +21,8 @@ WORKDIR /
 COPY --from=build /server /server
 COPY .env/ ./
 
-EXPOSE 3000
+
+EXPOSE 8000
 
 USER nonroot:nonroot
 
