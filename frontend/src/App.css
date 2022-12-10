@@ -1,0 +1,8 @@
+#root {
+  padding: 20px;
+}
+
+html, body, * {
+  font-family: "Hanken Grotesk";
+  box-sizing: border-box;
+}
