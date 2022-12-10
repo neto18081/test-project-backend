@@ -1,14 +1,14 @@
 FROM golang:1.19.3 AS build
 
-WORKDIR /app
+WORKDIR /backend
 
-COPY customer/ ./customer
-COPY initializers/ ./initializers
-COPY models/ ./models
-COPY .env/ ./
-COPY go.mod/ ./
-COPY go.sum/ ./
-COPY main.go ./
+COPY ./backend/customer/ ./customer
+COPY ./backend/initializers/ ./initializers
+COPY ./backend/models/ ./models
+COPY ./backend/.env/ ./
+COPY ./backend/go.mod/ ./
+COPY ./backend/go.sum/ ./
+COPY ./backend/main.go ./
 
 RUN go mod download
 
@@ -19,7 +19,7 @@ FROM gcr.io/distroless/base-debian10
 WORKDIR /
 
 COPY --from=build /server /server
-COPY .env/ ./
+COPY ./backend/.env/ ./
 
 
 EXPOSE 8000
