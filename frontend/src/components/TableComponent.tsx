@@ -10,16 +10,16 @@ import TableRow from "@mui/material/TableRow";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import { alpha } from "@mui/material/styles";
-import { Order, EnhancedTableProps } from "../types/Customer";
+import { Order, EnhancedTableProps } from "../types/Table";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+
+// CODE FROM MATERIAL UI TABLES
+// I TRANSFORMED IT IN A COMPONENT TO TRY TO MAKE IT MORE VERSATILE
+// I TRY TO MAKE IT AS GENERIC AS POSSIBLE, DEFINING ALL THE TYPES AND INTERFACES IN THE
+// MAIN APP.
 
 export default function TableComponent({
   setSelected,

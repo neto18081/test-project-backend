@@ -20,11 +20,13 @@ import AddIcon from "@mui/icons-material/Add";
 
 import "./App.css";
 import TableComponent from "./components/TableComponent";
-import { Order, EnhancedTableProps } from "./types/Customer";
+import { Order, EnhancedTableProps } from "./types/Table";
 import ModalComponent from "./components/ModalComponent";
 import { useForm, SubmitHandler } from "react-hook-form";
 import api from "./services/api";
 import Alert from "@mui/material/Alert";
+
+// DEFINING ALL THE TYPES THAT WILL BE USED
 
 type Data = {
   ID: number;
@@ -46,7 +48,9 @@ type Inputs = {
   password: string;
 };
 
+// INITIALIZE THE APPLICATION
 function App() {
+  // DECLARING STATES
   const [selected, setSelected] = useState<readonly string[]>([]);
   const [orderBy, setOrderBy] = useState<string>("id");
   const [order, setOrder] = useState<Order>("asc");
@@ -70,14 +74,14 @@ function App() {
     message: "",
     severity: "success",
   });
+  // TABLE ROWS
   const [rows, setRows] = useState<[] | readonly { [key: string]: string }[]>(
     []
   );
-  const [customers, setCustomers] = useState<
-    [] | readonly { [key: string]: string }[]
-  >([]);
+
   const [loading, setLoading] = useState(false);
 
+  // INITIALIZING REACT-HOOK-FORMS
   const {
     register,
     handleSubmit,
@@ -86,6 +90,7 @@ function App() {
     formState: { errors },
   } = useForm<Inputs>();
 
+  // REACT-HOOK-FORMS ON SUBMIT
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     if (modalType.type === "create") {
       createCustomer(data);
@@ -95,6 +100,7 @@ function App() {
     }
   };
 
+  // FUNCTION TRIGGERED WHEN THE SNACKBAR IS CLOSED
   const handleCloseSnackbar = (
     event?: React.SyntheticEvent | Event,
     reason?: string
@@ -109,9 +115,9 @@ function App() {
     });
   };
 
+  // FUNCTION TO RETRIEVE CUSTOMERS
   async function getCustomers() {
     const res = await api.get("/customers");
-    setCustomers(res.data.customers);
 
     const tableRows:
       | []
@@ -128,6 +134,7 @@ function App() {
     console.log(res.data);
   }
 
+  // FUNCTION FOR DELETING ONE OR MANY CUSTOMERS
   async function deleteCustomer(id?: string) {
     setLoading(true);
     try {
@@ -160,6 +167,7 @@ function App() {
     }
   }
 
+  // FUNCTION FOR UPDATING A CUSTOMERS
   async function updateCustomer(data: {
     first_name: string;
     last_name: string;
@@ -194,6 +202,7 @@ function App() {
     }
   }
 
+  // FUNCTION FOR CREATING A CUSTOMER
   async function createCustomer(data: Inputs) {
     setLoading(true);
     try {
@@ -221,6 +230,7 @@ function App() {
       setLoading(false);
     }
   }
+  // FUNCTION TO DECIDE IF THE RENDERED MODAL WILL BE FOR CREATING OR UPDATING A USER
   function handleModal(type: string, id: string) {
     console.log(id);
     reset();
@@ -248,6 +258,7 @@ function App() {
     getCustomers();
   }, []);
 
+  // FUNCTION FOR CREATING A TABLE ROW
   function createData(
     ID: string,
     first_name: string,
@@ -262,6 +273,7 @@ function App() {
     };
   }
 
+  // HEADER OF THE TABLE
   const headCells: readonly HeadCell[] = [
     {
       id: "ID",
@@ -289,6 +301,7 @@ function App() {
     },
   ];
 
+  // FUNCTION FOR SETTING HOW THE TABLE ORDER SHOULD BE
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: string
@@ -298,6 +311,7 @@ function App() {
     setOrderBy(property);
   };
 
+  // FUNCTION FOR ORDERING THE TABLE
   function EnhancedTableHead(props: EnhancedTableProps) {
     const {
       onSelectAllClick,
@@ -354,6 +368,7 @@ function App() {
     );
   }
 
+  // RETURN THE ELEMENTS CREATE AND DELETE BUTTON, TABLE, SNACKBAR AND MODAL
   return (
     <Box
       sx={{

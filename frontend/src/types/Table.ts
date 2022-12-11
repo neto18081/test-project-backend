@@ -1,6 +1,7 @@
 
-export type Order = "asc" | "desc";
+// COMMON TYPES USED IN THE TABLE COMPONENT AND IN THE APP
 
+export type Order = "asc" | "desc";
 
 export interface EnhancedTableProps {
   numSelected: number;
@@ -12,4 +13,4 @@ export interface EnhancedTableProps {
   order: Order;
   orderBy: string;
   rowCount: number;
-}
+} 

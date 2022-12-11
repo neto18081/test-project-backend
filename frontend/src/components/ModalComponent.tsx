@@ -17,6 +17,10 @@ const style = {
   p: 4,
 };
 
+// CODE FROM MATERIAL UI TABLES
+// I CREATED A COMPONENT WITH THE MODAL AND MADE ITS CHILDREN DYNAMIC
+// I CHANGE ITS CHILDREN SO I CAN RENDER TWO TYPES OF MODAL
+
 export default function ModalComponent({
   children,
   open,
